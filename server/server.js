@@ -4,8 +4,9 @@ import { MongoClient } from 'mongodb'
 import template from './../template'
 //comment out before building for production
 import devBundle from './devBundle'
+import config from './../config/config'
+import app from './express'
 
-const app = express()
 //comment out before building for production
 devBundle.compile(app)
 
@@ -17,7 +18,7 @@ app.get('/', (req, res) => {
 })
 
 let port = process.env.PORT || 3000
-app.listen(port, function onStart(err) {
+app.listen(config.port, (err) => {
   if (err) {
     console.log(err)
   }
