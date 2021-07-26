@@ -6,6 +6,8 @@ import template from './../template'
 import devBundle from './devBundle'
 import config from './../config/config'
 import app from './express'
+import mongoose from 'mongoose'
+
 
 //comment out before building for production
 devBundle.compile(app)
@@ -31,4 +33,8 @@ const url = process.env.MONGODB_URI || 'mongodb://localhost:27017/mernSimpleSetu
 MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true },(err, db)=>{
   console.log("Connected successfully to mongodb server")
   db.close()
+})
+
+mongoose.connection.on('error', () => {
+  throw new Error(`unable to connect to database: ${mongoUri}`)
 })
