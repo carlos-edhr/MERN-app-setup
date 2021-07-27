@@ -16,7 +16,6 @@ const getErrorMessage = (err) => {
             if (err.errors[errName].message) message = err.errors[errName].message
         }
     }
-
     return message
 }
 
